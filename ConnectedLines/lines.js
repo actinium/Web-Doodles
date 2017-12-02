@@ -171,6 +171,8 @@ lines = new (function(){
     if(context.logUpdateTime){
       let txt = `Update took: ${context.duration}ms`;
       graphics.font = '12px Arial';
+      graphics.fillStyle = 'rgba(50, 50, 50, 0.8)';
+      graphics.fillRect(7,9,graphics.measureText(txt).width+7,17)
       graphics.fillStyle = 'rgba(220, 220, 220, 0.8)';
       graphics.fillText(txt,10,22);
     }
