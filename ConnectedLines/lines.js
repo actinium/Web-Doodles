@@ -99,6 +99,7 @@ lines = new (function(){
 
   this.logUpdateTime = false;
   this.duration = 0;
+  this.fps = 0;
   this.updateCounter = 0;
 
   this.init = function(){
@@ -135,7 +136,7 @@ lines = new (function(){
       this.dots.push(new Dot(new Point(x,y),2,new Point(xspeed,yspeed)));
     }
     if( this.canvas.getContext ){
-      setInterval( this.update , 50 , this);
+      setInterval( this.update , 1000/30 , this);
     }
   }
 
@@ -165,16 +166,23 @@ lines = new (function(){
     if( context.updateCounter == 10){
       context.updateCounter = 0;
       context.duration = Math.round( duration * 10 ) / 10;
+      context.fps = Math.round(1/time.deltaTime());
     }else{
       context.updateCounter += 1;
     }
     if(context.logUpdateTime){
-      let txt = `Update took: ${context.duration}ms`;
+      let updateDurationTxt = `Update took: ${context.duration}ms`;
+      let fpsTxt = `Fps: ${context.fps}`;
+      let txtSize = Math.max(
+        graphics.measureText(updateDurationTxt).width+7,
+        graphics.measureText(fpsTxt).width+7
+      );
       graphics.font = '12px Arial';
       graphics.fillStyle = 'rgba(50, 50, 50, 0.8)';
-      graphics.fillRect(7,9,graphics.measureText(txt).width+7,17)
+      graphics.fillRect(7,9,graphics.measureText(updateDurationTxt).width+7,34)
       graphics.fillStyle = 'rgba(220, 220, 220, 0.8)';
-      graphics.fillText(txt,10,22);
+      graphics.fillText(updateDurationTxt,10,22);
+      graphics.fillText(fpsTxt,10,37);
     }
   }
 
