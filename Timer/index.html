@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Timer</title>
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link id="favicon" rel="icon" type="img/ico" href="icons/pie-0.ico">
+  </head>
+  <body onload="timer.init()">
+    <div class="center">
+      <canvas id="main-canvas" onclick="timer.counting ? timer.stop(): timer.start();" height="500" width="500"></canvas>
+      <div class="btn-group">
+        <p>Min:</p>
+        <button onclick="timer.addMinute()">+</button>
+        <button onclick="timer.subMinute()">-</button>
+      </div>
+      <div class="btn-group">
+        <p>Sec:</p>
+        <button onclick="timer.addSecond()">+</button>
+        <button onclick="timer.subSecond()">-</button>
+      </div>
+      <div class="ctrl-btn btn-group">
+        <button class="start" onclick="timer.start()">Start</button>
+        <button class="stop" onclick="timer.stop()">Stop</button>
+      </div>
+      <audio id="alarm" controls preload="auto">
+        <source src="audio/alarm.mp3" type="audio/mpeg">
+        <source src="audio/alarm.ogg" type="audio/ogg">
+      </audio>
+    </div>
+    <script src="timer.js"></script>
+  </body>
+</html>
