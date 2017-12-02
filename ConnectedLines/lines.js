@@ -186,4 +186,4 @@ lines = new (function(){
     }
   }
 
-})();;
+})();
